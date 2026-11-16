@@ -1,3 +1,4 @@
+import { accessCode } from './rooms.js';
 // Test-only receiver bridge. Google credentials must never reach the browser.
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
@@ -32,7 +33,7 @@ export default async function handler(req, res) {
         !b || typeof b.fullName !== 'string' || !b.fullName.trim() || b.fullName.length > 200 ||
         typeof b.email !== 'string' || b.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.email) ||
         !Number.isFinite(record.totalFee) || record.totalFee < 0) throw new Error();
-    record = { ...record, payment: { method: 'Test submission', txnId: '', status: 'TEST_UNVERIFIED' } };
+    record = { ...record, tailoredData: { ...record.tailoredData, preferredRoommateId: '', preferredRoommateLabel: '' }, payment: { method: 'Test submission', txnId: '', status: 'TEST_UNVERIFIED' } };
   } catch {
     return res.status(400).json({ error: 'Enter a valid name and email address before submitting.' });
   }
@@ -48,7 +49,7 @@ export default async function handler(req, res) {
     if (!response.ok || result.ok !== true || result.regId !== record.regId) {
       return res.status(502).json({ error: 'Google Sheets did not confirm the save. Check the connection settings and retry.' });
     }
-    return res.status(200).json({ ok: true, regId: record.regId, test: true, duplicate: !!result.duplicate });
+    return res.status(200).json({ ok: true, regId: record.regId, test: true, duplicate: !!result.duplicate, accessCode: accessCode(record.regId, secret) });
   } catch {
     return res.status(502).json({ error: 'Could not confirm the Google Sheets save. Retry with the same registration.' });
   }
