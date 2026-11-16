@@ -628,70 +628,19 @@
               </div>
             </div>
 
-            <!-- UPI Panel -->
-            <div id="payPanelUpi" class="border border-stone-200 rounded-xl p-4 space-y-3">
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="text-xs font-semibold text-slate-600">Quick App:</span>
-                <button type="button" data-upiapp="Google Pay" class="upi-app-chip px-2.5 py-1 rounded-full text-xs font-medium border border-stone-300 bg-white hover:bg-stone-50 cursor-pointer">Google Pay</button>
-                <button type="button" data-upiapp="PhonePe" class="upi-app-chip px-2.5 py-1 rounded-full text-xs font-medium border border-stone-300 bg-white hover:bg-stone-50 cursor-pointer">PhonePe</button>
-                <button type="button" data-upiapp="Paytm" class="upi-app-chip px-2.5 py-1 rounded-full text-xs font-medium border border-stone-300 bg-white hover:bg-stone-50 cursor-pointer">Paytm</button>
-                <button type="button" data-upiapp="BHIM UPI" class="upi-app-chip px-2.5 py-1 rounded-full text-xs font-medium border border-stone-300 bg-white hover:bg-stone-50 cursor-pointer">BHIM</button>
-              </div>
-              <div>
-                <label for="payUpiId" class="block text-xs font-semibold text-slate-700 mb-1">UPI ID / VPA</label>
-                <input id="payUpiId" type="text" placeholder="e.g. yourname@okaxis or 9995229629@ybl" class="w-full rounded-xl border border-stone-300 px-3.5 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-sandbrand-600" />
-              </div>
-            </div>
-
-            <!-- Card Panel -->
-            <div id="payPanelCard" class="hidden border border-stone-200 rounded-xl p-4 space-y-3">
-              <div>
-                <label for="payCardNo" class="block text-xs font-semibold text-slate-700 mb-1">Card Number</label>
-                <input id="payCardNo" type="text" inputmode="numeric" maxlength="19" placeholder="4532 1234 5678 9012" class="w-full rounded-xl border border-stone-300 px-3.5 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-sandbrand-600" />
-              </div>
-              <div class="grid grid-cols-2 gap-3">
-                <div>
-                  <label for="payCardExp" class="block text-xs font-semibold text-slate-700 mb-1">Expiry (MM/YY)</label>
-                  <input id="payCardExp" type="text" maxlength="5" placeholder="08/29" class="w-full rounded-xl border border-stone-300 px-3.5 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-sandbrand-600" />
-                </div>
-                <div>
-                  <label for="payCardCvv" class="block text-xs font-semibold text-slate-700 mb-1">CVV</label>
-                  <input id="payCardCvv" type="password" inputmode="numeric" maxlength="4" placeholder="123" class="w-full rounded-xl border border-stone-300 px-3.5 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-sandbrand-600" />
-                </div>
-              </div>
-              <div>
-                <label for="payCardName" class="block text-xs font-semibold text-slate-700 mb-1">Cardholder Name</label>
-                <input id="payCardName" type="text" placeholder="Name on card" class="w-full rounded-xl border border-stone-300 px-3.5 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-sandbrand-600" />
-              </div>
-            </div>
-
-            <!-- Wallet Panel -->
-            <div id="payPanelWallet" class="hidden border border-stone-200 rounded-xl p-4 space-y-3">
-              <div>
-                <label for="payWalletName" class="block text-xs font-semibold text-slate-700 mb-1">Select Wallet</label>
-                <select id="payWalletName" class="w-full rounded-xl border border-stone-300 px-3.5 py-2 text-sm text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-sandbrand-600">
-                  <option value="Paytm Wallet">Paytm Wallet</option>
-                  <option value="Google Pay">Google Pay</option>
-                  <option value="PhonePe Wallet">PhonePe Wallet</option>
-                  <option value="Amazon Pay">Amazon Pay</option>
-                </select>
-              </div>
-              <div>
-                <label for="payWalletMobile" class="block text-xs font-semibold text-slate-700 mb-1">Registered Mobile Number</label>
-                <input id="payWalletMobile" type="tel" maxlength="10" placeholder="10-digit mobile number" class="w-full rounded-xl border border-stone-300 px-3.5 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-sandbrand-600" />
-              </div>
-            </div>
-
-            <div class="text-xs text-slate-600 bg-stone-50 border border-stone-200 rounded-xl p-3">
-              <strong>Test Checkout Mode:</strong> This standalone preview simulates gateway checkout. For live collection, connect your <strong>Razorpay</strong> or <strong>Cashfree</strong> merchant key (₹0 setup &amp; ₹0 monthly fee) or a direct conference UPI VPA.
-            </div>
+            <div id="payPanelUpi" class="hidden"></div>
+            <div id="payPanelCard" class="hidden"></div>
+            <div id="payPanelWallet" class="hidden"></div>
+            <p id="sheetSaveStatus" role="status" aria-live="polite" class="text-sm text-slate-700 bg-amber-50 border border-amber-200 rounded-xl p-4">
+              <strong>Test registration only.</strong> No payment will be collected. Submit to save a test entry to the organizer’s Google Sheet. Amounts shown are for reference; this is not a valid conference pass.
+            </p>
 
             <div class="flex items-center justify-between pt-3 border-t border-stone-200">
               <button id="backToStep4FooterBtn" type="button" class="px-4 py-2.5 rounded-xl border border-stone-300 text-slate-700 hover:bg-stone-50 font-medium text-sm transition cursor-pointer">
                 &larr; Back
               </button>
               <button id="confirmPayBtn" type="button" class="px-6 py-2.5 rounded-xl bg-sandbrand-700 hover:bg-sandbrand-800 text-white font-semibold text-sm shadow-sm transition cursor-pointer">
-                Pay ₹4,500 &amp; Generate Pass &rarr;
+                Save test registration &rarr;
               </button>
             </div>
           </div>
@@ -1162,7 +1111,7 @@
       }
 
       const CONFERENCE_CONFIG = {
-        GOOGLE_SHEETS_WEBHOOK_URL: '', // Paste your free Google Apps Script Web App URL
+        REGISTRATION_API_URL: '/api/save-registration', // Private Google connection lives on Vercel
         CASHFREE_MODE: 'sandbox',      // Change to 'production' when Cashfree live KYC is approved
         USE_VERCEL_CASHFREE_API: true, // Calls /api/create-order on Vercel; auto-falls back to Demo if keys aren't set
         ORG_NAME: 'CAN Kerala AROICON 2027',
@@ -1449,7 +1398,7 @@
         el('reviewContainer').classList.add('hidden');
         el('confirmationContainer').classList.remove('hidden');
 
-        renderPassCard('Retrieved Conference Pass');
+        renderPassCard(record.payment?.status === 'TEST_UNVERIFIED' ? 'TEST REGISTRATION · No payment collected' : 'Retrieved Conference Pass');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
@@ -2266,7 +2215,7 @@
         const total = getTotalFee();
         el('payTotalAmount').textContent = formatINR(total);
         el('paySummaryMeta').textContent = `${FEES[state.category].label}${state.hasAccompanying ? ' + Accompanying' : ''} · ${TIER_LABELS[state.tier]}`;
-        el('confirmPayBtn').textContent = `Pay ${formatINR(total)} & Generate Pass →`;
+        el('confirmPayBtn').textContent = 'Save test registration →';
         document.querySelectorAll('.pay-method-card').forEach((btn) => {
           const active = btn.dataset.paymethod === state.payMethod;
           btn.classList.toggle('border-sandbrand-700', active);
@@ -2314,103 +2263,58 @@
       el('backToStep4Btn').addEventListener('click', () => setStepper(4));
       el('backToStep4FooterBtn').addEventListener('click', () => setStepper(4));
 
-      function completeRegistrationWithPayment(methodLabel, txnId) {
-        state.regId = 'AROI27-' + Math.floor(1000 + Math.random() * 9000);
-        state.payment = {
-          method: methodLabel,
-          txnId: txnId,
-          status: 'PAID',
-        };
-        const finalRecord = {
-          regId: state.regId,
-          category: state.category,
-          tier: state.tier,
-          abstract: state.abstract,
-          hasAccompanying: state.hasAccompanying,
-          accompAbove10: Number(state.accompAbove10) || 0,
-          accompBelow10: Number(state.accompBelow10) || 0,
-          accommodation: state.accommodation,
-          totalFee: getTotalFee(),
-          basicData: { ...state.basicData },
-          tailoredData: { ...state.tailoredData },
-          payment: { ...state.payment },
-        };
-        saveRecordToRegistry(finalRecord);
-        if (CONFERENCE_CONFIG.GOOGLE_SHEETS_WEBHOOK_URL) {
-          fetch(CONFERENCE_CONFIG.GOOGLE_SHEETS_WEBHOOK_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(finalRecord),
-          }).catch(() => {});
+      // Keep the same ID and payload after a timeout: retries cannot add a second row.
+      const PENDING_SAVE_KEY = 'aroicon_pending_sheet_save_v1';
+      let pendingSheetRecord = null;
+      try { pendingSheetRecord = JSON.parse(sessionStorage.getItem(PENDING_SAVE_KEY)); } catch (_) {}
+
+      el('confirmPayBtn').addEventListener('click', async () => {
+        const btn = el('confirmPayBtn');
+        if (btn.disabled) return;
+        if (!pendingSheetRecord) {
+          if (!state.basicData.fullName?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.basicData.email || '')) {
+            showToast('Please enter your name and a valid email address in Basic Details.');
+            return;
+          }
+          pendingSheetRecord = {
+            regId: 'AROI27-' + crypto.randomUUID(),
+            category: state.category, tier: state.tier, abstract: state.abstract,
+            hasAccompanying: state.hasAccompanying,
+            accompAbove10: Number(state.accompAbove10) || 0,
+            accompBelow10: Number(state.accompBelow10) || 0,
+            accommodation: state.accommodation, totalFee: getTotalFee(),
+            basicData: { ...state.basicData }, tailoredData: { ...state.tailoredData },
+            payment: { method: 'Test submission', txnId: '', status: 'TEST_UNVERIFIED' },
+          };
+          try { sessionStorage.setItem(PENDING_SAVE_KEY, JSON.stringify(pendingSheetRecord)); } catch (_) {}
         }
-
-        renderPassCard('Payment Confirmed · Pass Generated');
-        el('paymentContainer').classList.add('hidden');
-        el('confirmationContainer').classList.remove('hidden');
-      }
-
-      el('confirmPayBtn').addEventListener('click', () => {
-        let methodLabel = 'UPI';
-        if (state.payMethod === 'upi') {
-          methodLabel = `UPI (${state.upiApp})`;
-        } else if (state.payMethod === 'card') {
-          methodLabel = 'Credit / Debit Card';
-        } else {
-          methodLabel = el('payWalletName').value || 'Wallet';
+        btn.disabled = true;
+        btn.textContent = 'Saving to Google Sheets...';
+        try {
+          const response = await fetch(CONFERENCE_CONFIG.REGISTRATION_API_URL, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ record: pendingSheetRecord }),
+          });
+          const result = await response.json();
+          if (!response.ok || result.ok !== true || result.regId !== pendingSheetRecord.regId) {
+            throw new Error(result.error || 'The registration was not confirmed as saved.');
+          }
+          const saved = pendingSheetRecord;
+          Object.assign(state, saved);
+          saveRecordToRegistry(saved);
+          pendingSheetRecord = null;
+          try { sessionStorage.removeItem(PENDING_SAVE_KEY); } catch (_) {}
+          renderPassCard('TEST REGISTRATION SAVED · No payment collected');
+          el('paymentContainer').classList.add('hidden');
+          el('confirmationContainer').classList.remove('hidden');
+          showToast('Test registration saved to Google Sheets. No payment was collected.');
+        } catch (error) {
+          showToast(error.message || 'Save not confirmed. Please retry.');
+          el('sheetSaveStatus').textContent = 'Save not confirmed. ' + (error.message || '') + ' Use Retry to resend the same registration.';
+        } finally {
+          btn.disabled = false;
+          btn.textContent = pendingSheetRecord ? 'Retry saving registration →' : 'Save test registration →';
         }
-
-        if (CONFERENCE_CONFIG.USE_VERCEL_CASHFREE_API && location.protocol.startsWith('http') && typeof window.Cashfree === 'function') {
-          const btn = el('confirmPayBtn');
-          const origText = btn.textContent;
-          btn.disabled = true;
-          btn.textContent = 'Connecting to Cashfree...';
-          fetch('/api/create-order', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              amount: getTotalFee(),
-              customerName: `${state.basicData.salutation || ''} ${state.basicData.fullName || ''}`.trim() || 'Delegate',
-              customerEmail: state.basicData.email || 'delegate@aroi.org',
-              customerPhone: state.basicData.phone || '9999999999',
-              category: FEES[state.category].label,
-            }),
-          })
-            .then((r) => r.ok ? r.json() : Promise.reject(new Error('API unavailable')))
-            .then(async (data) => {
-              if (data.demo || !data.payment_session_id) {
-                completeRegistrationWithPayment(methodLabel, 'PAY-' + Math.floor(100000 + Math.random() * 900000));
-                return;
-              }
-              const cashfree = window.Cashfree({ mode: data.mode || CONFERENCE_CONFIG.CASHFREE_MODE });
-              const res = await cashfree.checkout({
-                paymentSessionId: data.payment_session_id,
-                redirectTarget: '_modal',
-              });
-              if (res && res.error) {
-                showToast(res.error.message || 'Payment cancelled or failed.');
-                return;
-              }
-              const verifyRes = await fetch('/api/verify-payment?order_id=' + encodeURIComponent(data.order_id));
-              const verifyData = await verifyRes.json();
-              if (verifyData.paid) {
-                completeRegistrationWithPayment('Cashfree', verifyData.payment_id || data.order_id);
-              } else {
-                showToast('Payment not completed yet. Please try again.');
-              }
-            })
-            .catch(() => {
-              completeRegistrationWithPayment(methodLabel, 'PAY-' + Math.floor(100000 + Math.random() * 900000));
-            })
-            .finally(() => {
-              btn.disabled = false;
-              btn.textContent = origText;
-            });
-          return;
-        }
-
-        completeRegistrationWithPayment(methodLabel, 'PAY-' + Math.floor(100000 + Math.random() * 900000));
-        showToast('Payment recorded & conference pass generated!');
       });
 
       el('copyCommitteeEmailBtn').addEventListener('click', () => {
