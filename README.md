@@ -18,3 +18,8 @@ Upload api/save-registration.js and api/rooms.js to api/, then index.html to the
 
 ## Before live payments
 Email alerts are not configured. The dashboard shows new registrations on refresh. Local-only legacy records are not imported. Cashfree code is retained but checkout does not call it. Production launch requires server-calculated pricing, verified payments bound to registrations, recovery/webhooks, and end-to-end testing. To move accounts, deploy a new private registry under the organizer account and update the Vercel URL and secret.
+
+## Required fields
+Every visible required field is validated before advancing, including age/email/mobile formats and conditional fields for trade, accompanying guests and abstracts. Hidden and disabled fields are skipped. Required tailored dropdowns start with an empty Select option. Policy consent is required before submission. Payment test mode does not disable form validation.
+
+Apps Script source is backed up in apps-script.gs; its embedded dashboard HTML is also available in dashboard-source.html.txt. These sources contain no credentials.
