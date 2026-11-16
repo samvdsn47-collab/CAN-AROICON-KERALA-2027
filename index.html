@@ -96,7 +96,7 @@
           Welcome to CAN Kerala AROICON 2027
         </h2>
         <p class="text-sm text-slate-700 leading-relaxed max-w-xl">
-          KPM Tripenta Hotel, Opposite Sarovaram Bio Park, Kozhikode. Register as a new delegate or sign in with your email and mobile number to access your conference pass.
+          KPM Tripenta Hotel, Opposite Sarovaram Bio Park, Kozhikode. Register as a new delegate or sign in with your registration ID and private access code to access your conference pass.
         </p>
       </div>
       <div class="md:col-span-5 h-40 sm:h-48 md:h-full relative">
@@ -1344,6 +1344,7 @@
         state.categoryManuallyPicked = false;
         state.lockedCategory = null;
         state.regId = null;
+        roomStatus = null; delegateAccessCode = ''; pendingRoommateId = null;
         el('basicForm').reset();
         el('b_state').value = 'Kerala';
         updateDistrictFieldMode();
@@ -1387,7 +1388,9 @@
         el('step1View').classList.add('hidden');
         el('step2View').classList.add('hidden');
         el('step3View').classList.add('hidden');
-        el('step4View').classList.remove('hidden');
+        el('step4View').classList.add('hidden');
+        el('step5View').classList.remove('hidden');
+        el('paymentContainer').classList.add('hidden');
 
         el('reviewContainer').classList.add('hidden');
         el('confirmationContainer').classList.remove('hidden');
@@ -1430,6 +1433,9 @@
         el('roommatePreferenceCard').classList.toggle('hidden',!show);
         if(!show) return;
         const partner=registry.find(r=>r.regId===roomStatus?.partnerId);
+        state.tailoredData.preferredRoommateId=partner?.regId || '';
+        state.tailoredData.preferredRoommateLabel=partner ? partner.basicData.fullName+' — '+(partner.basicData.college||'') : '';
+        el('passDetailsGrid').innerHTML=renderReviewHTML();
         const locked=!roomStatus || roomStatus.closed || !!roomStatus.partnerId;
         el('roommateDropdownBtn').disabled=locked;
         el('saveRoommateBtn').disabled=locked;
