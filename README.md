@@ -1,44 +1,20 @@
-# CAN Kerala AROICON 2027 registration portal
+# CAN Kerala AROICON 2027
 
-This deployment is a **test registration portal** while the payment gateway is pending.
-It saves registrations to a private Google Sheet and does not collect payments.
-Pricing rules are unchanged. Friday accommodation is INR 1,750 per person.
+The Vercel portal saves test registrations to a private Google Sheet. Payment collection is paused; reported fees are not verified revenue. Existing pricing is unchanged, including Friday accommodation at INR 1,750 per person.
 
-## Connection
+## Configuration
+Vercel production variables: REGISTRATION_MODE=test, GOOGLE_SHEETS_WEBHOOK_URL (Apps Script /exec URL), REGISTRATION_SECRET (matching private script property). Never put the secret in browser code or GitHub.
 
-The browser sends records to POST /api/save-registration. The Vercel function adds
-its private secret and forwards the record to the Apps Script receiver. A save is
-confirmed only when Google acknowledges the registration ID. Retries reuse the same
-ID and payload to avoid duplicate rows after a timeout.
+## Organizer dashboard
+The Apps Script web app at /exec?view=dashboard contains responsive cards, clickable food/accommodation/category charts, searchable delegate lists, CSV export, Friday unpaired contacts and organizer partner assignment. It refreshes every minute and can be embedded in the private Google Site. It checks the active Google user against the script owner on every dashboard read and assignment. An empty or different identity is denied. The registration Sheet must remain restricted.
 
-Set these Vercel environment variables for the deployed environment:
+## Room sharing
+Delegates retrieve their registration from any device using the registration ID and private access code shown on their pass. Codes are derived server-side and are never included in candidate lists. Candidate records expose only name, institution, stay dates and pairing availability. A script lock guards validation and a single RoomPairs row reserves both delegates atomically. Self-pairing, mismatched stay dates and occupied partners are rejected. Repeating the same pair is idempotent. Delegate selection ends on 31 December 2026 at 23:59:59 India time; organizers can assign afterward. Organizers should confirm suitability with delegates before assignment. A saved pairing is locked; changes currently require organizer maintenance of the RoomPairs sheet.
 
-- REGISTRATION_MODE: test
-- GOOGLE_SHEETS_WEBHOOK_URL: deployed Apps Script URL ending in /exec
-- REGISTRATION_SECRET: matching Apps Script property (keep this secret)
+Friday follow-up includes Friday + Saturday delegates without a paired delegate. Saturday-included counts cover both Saturday-only and Friday + Saturday registrations. Food charts count registered delegates; accompanying guests do not have individual food preferences collected. No fabricated registrations are displayed. Test-only verification records are clearly named when present.
 
-Redeploy after changing these settings. Never put the secret in HTML, GitHub,
-the browser, or a URL. Keep the Google Sheet restricted to organizers.
+## Deployment and validation
+Upload api/save-registration.js and api/rooms.js to api/, then index.html to the root. Deploy the matching Apps Script source as a new version of the existing deployment. Local tests use node --test tests/*.test.mjs. Google Sheet receiver acknowledgements are required before confirming saves. Retried saves keep the same ID to prevent duplicate rows.
 
-## Dashboard
-
-The registration workbook contains a Dashboard tab with formulas for registration
-counts, categories, accommodation choices, accompanying persons, reported fees,
-and a registration list. A private Google Site embeds that workbook.
-Refresh the dashboard to load current data. Organizers need access to both the
-Google Site and the Sheet. Download CSV from the Sheet using File > Download.
-
-All rows saved by this test integration are unverified. Reported fees are not
-revenue. The dashboard intentionally shows payments collected as zero.
-
-## Limitations and live launch
-
-- Delegate login and room-partner controls remain browser-local. Central saving
-  does not yet synchronize subsequent room-partner edits.
-- Email alerts are not configured.
-- Existing browser-local registrations are not automatically imported.
-- Cashfree files are retained, but test checkout does not call them. Do not simply
-  enable production keys: live launch requires server-calculated prices, verified
-  payments tied to saved registrations, payment recovery/webhooks, and testing.
-- For the organizer's final Google account, deploy the receiver under that account
-  and update the URL and secret in Vercel. Test data can remain separate.
+## Before live payments
+Email alerts are not configured. The dashboard shows new registrations on refresh. Local-only legacy records are not imported. Cashfree code is retained but checkout does not call it. Production launch requires server-calculated pricing, verified payments bound to registrations, recovery/webhooks, and end-to-end testing. To move accounts, deploy a new private registry under the organizer account and update the Vercel URL and secret.
