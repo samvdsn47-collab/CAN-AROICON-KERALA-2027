@@ -185,8 +185,8 @@
               First time registering? Start here to enter your basic details, choose your category and stay preferences, and complete a tailored registration form to generate your pass.
             </p>
             <div class="bg-ivory border border-stone-200 rounded-xl p-4 text-xs text-slate-700 space-y-1.5 mb-6">
-              <p class="font-semibold text-slate-900">Regular Registration Active (Till 31 Dec 2026)</p>
-              <p>PG / Senior Resident: <strong>₹2,500</strong> · Delegates, Accompanying &amp; Trade: <strong>₹4,500</strong></p>
+              <p id="landingFeeTier" class="font-semibold text-slate-900">Registration fees</p>
+              <p id="landingFees">Early bird: PG / Senior Resident ₹2,000 · Delegates &amp; Accompanying ₹3,500</p>
               <p class="text-slate-500">Includes scientific sessions, kit, lunch, banquet &amp; 9 Jan (Sat) stay.</p>
             </div>
           </div>
@@ -323,7 +323,6 @@
                     <option value="Consultant Oncologist">Consultant Oncologist</option>
                     <option value="Medical Physicist">Medical Physicist</option>
                     <option value="Retired / Emeritus Faculty">Retired / Emeritus Faculty</option>
-                    <option value="Trade Delegate">Trade Delegate</option>
                   </select>
                 </div>
 
@@ -350,10 +349,6 @@
                   </div>
                 </div>
 
-                <div id="tradeCompanyWrap" class="hidden sm:col-span-2">
-                  <label for="b_tradeCompany" class="block text-xs font-semibold text-slate-700 mb-1">Company / Organization Name <span class="text-rose-600">*</span></label>
-                  <input id="b_tradeCompany" name="tradeCompany" type="text" placeholder="e.g. Varian, Elekta, Siemens" class="w-full rounded-xl border border-stone-300 px-3.5 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-sandbrand-600" />
-                </div>
 
                 <div class="sm:col-span-2">
                   <label for="b_aroiMemberNo" class="block text-xs font-semibold text-slate-700 mb-1">AROI Membership Number <span class="text-slate-400 font-normal">(Optional)</span></label>
@@ -408,14 +403,6 @@
                 </div>
                 <p class="text-xs text-slate-500">Consultants, Faculty, Medical Physicists &amp; Clinicians</p>
               </button>
-
-              <button type="button" data-category="trade" class="cat-card text-left p-4 rounded-xl border-2 transition cursor-pointer">
-                <div class="flex items-center justify-between gap-2 mb-1">
-                  <span class="font-semibold text-slate-900 text-sm">Trade Delegate</span>
-                  <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-sandbrand-50 text-sandbrand-700" data-price-badge="trade">₹4,500</span>
-                </div>
-                <p class="text-xs text-slate-500">Industry partners, exhibitors &amp; sponsors</p>
-              </button>
             </div>
           </div>
 
@@ -447,7 +434,7 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
               </select>
-              <p class="text-[11px] text-slate-500 mt-1">₹4,500/person reg. + ₹1,750/person if Fri night stay is selected. Children under 10 yrs are free (no registration or hotel room fee).</p>
+              <p class="text-[11px] text-slate-500 mt-1">Accompanying-person registration: ₹3,500 early bird / ₹4,500 regular / ₹6,500 spot, plus ₹1,750 per person for Friday night. Children under 10 yrs are free (no registration or hotel room fee).</p>
             </div>
           </div>
 
@@ -455,13 +442,14 @@
           <div class="mb-6">
             <label class="block text-sm font-semibold text-slate-800 mb-2.5">3. Registration Window <span class="text-rose-600">*</span></label>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="tierGrid">
+              <button type="button" data-tier="early" class="tier-card p-3 rounded-xl border-2 text-left transition cursor-pointer"><div class="text-sm font-semibold text-slate-900">Early Bird</div><div class="text-xs text-slate-500" data-tier-sub="early">Till 6 Dec 2026</div></button>
               <button type="button" data-tier="regular" class="tier-card p-3 rounded-xl border-2 text-left transition cursor-pointer">
                 <div class="text-sm font-semibold text-slate-900">Regular</div>
-                <div class="text-xs text-slate-500" data-tier-sub="regular">Till 31 Dec 2026</div>
+                <div class="text-xs text-slate-500" data-tier-sub="regular">7–31 Dec 2026</div>
               </button>
               <button type="button" data-tier="spot" class="tier-card p-3 rounded-xl border-2 text-left transition cursor-pointer">
                 <div class="text-sm font-semibold text-slate-900">Spot</div>
-                <div class="text-xs text-slate-500" data-tier-sub="spot">1–7 Jan 2027</div>
+                <div class="text-xs text-slate-500" data-tier-sub="spot">1–10 Jan 2027</div>
               </button>
             </div>
             <p id="spotNotice" class="hidden mt-2 text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
@@ -499,7 +487,7 @@
                   <span class="text-sm font-semibold text-slate-900">Fri + Sat (8 &amp; 9 Jan)</span>
                   <span id="friStayPriceBadge" class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-sandbrand-50 text-sandbrand-700 border border-sandbrand-100 shrink-0">+ ₹1,750</span>
                 </div>
-                <div id="friStayPriceSub" class="text-xs text-slate-500 mt-0.5">Twin-sharing · 8 January on extra payment (₹1,750 per person)</div>
+                <div id="friStayPriceSub" class="text-xs text-slate-500 mt-0.5">Twin-sharing · Friday extra night: ₹1,500 PG/Senior Resident; ₹1,750 other categories, per person</div>
               </button>
               <button type="button" data-accom="none" class="accom-card p-3 rounded-xl border-2 text-left transition cursor-pointer">
                 <div class="text-sm font-semibold text-slate-900">Not Required</div>
@@ -808,30 +796,34 @@
               <thead class="bg-sandbrand-50 text-sandbrand-900">
                 <tr>
                   <th class="px-3 py-2 font-semibold">Category</th>
-                  <th class="px-3 py-2 font-semibold">Regular<br><span class="font-normal text-[11px]">Till 31 Dec 2026</span></th>
-                  <th class="px-3 py-2 font-semibold">Spot<br><span class="font-normal text-[11px]">1–7 Jan 2027</span></th>
+                  <th class="px-3 py-2 font-semibold">Early Bird</th>
+                  <th class="px-3 py-2 font-semibold">Regular<br><span class="font-normal text-[11px]">7–31 Dec 2026</span></th>
+                  <th class="px-3 py-2 font-semibold">Spot<br><span class="font-normal text-[11px]">1–10 Jan 2027</span></th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-stone-200">
                 <tr>
                   <td class="px-3 py-2 font-medium">PG / Senior Resident</td>
+                  <td class="px-3 py-2">₹ 2,000</td>
                   <td class="px-3 py-2">₹ 2,500</td>
                   <td class="px-3 py-2">₹ 4,000</td>
                 </tr>
                 <tr>
                   <td class="px-3 py-2 font-medium">Delegates</td>
+                  <td class="px-3 py-2">₹ 3,500</td>
                   <td class="px-3 py-2">₹ 4,500</td>
                   <td class="px-3 py-2">₹ 6,500</td>
                 </tr>
                 <tr>
-                  <td class="px-3 py-2 font-medium">Accompanying persons &amp; trade delegates</td>
+                  <td class="px-3 py-2 font-medium">Accompanying persons</td>
+                  <td class="px-3 py-2">₹ 3,500</td>
                   <td class="px-3 py-2">₹ 4,500</td>
                   <td class="px-3 py-2">₹ 6,500</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p class="text-xs text-slate-500 mt-1.5">Regular registration closes 31 December 2026; Spot registration runs 1–7 January 2027.</p>
+          <p class="text-xs text-slate-500 mt-1.5">Early bird is open now. Regular opens 7 December 2026 at 12:01 a.m.; spot opens 1 January 2027 at 12:01 a.m. Registration stays open through 10 January 2027. All times are Indian Standard Time (IST).</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
@@ -913,16 +905,20 @@
         ],
       };
 
+      // Organizer schedule: explicit India offsets keep transitions independent of visitor timezone.
+      const REGULAR_START = Date.parse('2026-12-07T00:01:00+05:30');
+      const SPOT_START = Date.parse('2027-01-01T00:01:00+05:30');
+      const REGISTRATION_CLOSE = Date.parse('2027-01-11T00:00:00+05:30');
       const FEES = {
-        pg_resident: { regular: 2500, spot: 4000, label: 'PG / Senior Resident' },
-        delegate: { regular: 4500, spot: 6500, label: 'Delegate / Faculty' },
-        accompanying: { regular: 4500, spot: 6500, label: 'Accompanying Person' },
-        trade: { regular: 4500, spot: 6500, label: 'Trade Delegate' },
+        pg_resident: { early: 2000, regular: 2500, spot: 4000, label: 'PG / Senior Resident' },
+        delegate: { early: 3500, regular: 4500, spot: 6500, label: 'Delegate / Faculty' },
+        accompanying: { early: 3500, regular: 4500, spot: 6500, label: 'Accompanying Person' },
       };
 
       const TIER_LABELS = {
-        regular: 'Regular (Till 31 Dec 2026)',
-        spot: 'Spot (1–7 Jan 2027)',
+        early: 'Early Bird',
+        regular: 'Regular (7–31 Dec 2026)',
+        spot: 'Spot (1–10 Jan 2027)',
       };
 
       const ACCOM_LABELS = {
@@ -1111,28 +1107,24 @@
       };
 
       // Required fields stay enforced even while payment collection is paused.
-      const EXTRA_FRIDAY_STAY_FEE = 1750;
+      const EXTRA_FRIDAY_STAY_FEES = { pg_resident: 1500, delegate: 1750, accompanying: 1750 };
+      function getFridayRate(category = state.category) { return EXTRA_FRIDAY_STAY_FEES[category] ?? 0; }
 
       function getTodayISO() {
-        const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        return `${y}-${m}-${d}`;
+        return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
       }
 
-      function getWindowAvailability() {
-        const today = getTodayISO();
+      function getWindowAvailability(now = Date.now()) {
         return {
-          regular: today <= '2026-12-31',
-          spot: today >= '2027-01-01' && today <= '2027-01-07',
+          early: now < REGULAR_START,
+          regular: now >= REGULAR_START && now < SPOT_START,
+          spot: now >= SPOT_START && now < REGISTRATION_CLOSE,
         };
       }
 
-      function getDefaultActiveTier() {
-        const today = getTodayISO();
-        if (today <= '2026-12-31') return 'regular';
-        return 'spot';
+      function getDefaultActiveTier(now = Date.now()) {
+        const available = getWindowAvailability(now);
+        return available.early ? 'early' : available.regular ? 'regular' : 'spot';
       }
 
       function getAccompanyingRegFee() {
@@ -1144,7 +1136,8 @@
       function getExtraStayFee() {
         if (state.accommodation !== 'fri_and_sat') return 0;
         const adultAccomp = state.hasAccompanying ? (Number(state.accompAbove10) || 0) : 0;
-        return EXTRA_FRIDAY_STAY_FEE * (1 + adultAccomp);
+        if (state.category === 'accompanying' && Number(state.basicData?.age) > 0 && Number(state.basicData.age) < 10) return 0;
+        return getFridayRate() + getFridayRate('accompanying') * adultAccomp;
       }
 
       function getTotalFee() {
@@ -1289,11 +1282,9 @@
       function updateInstitutionFieldsVisibility() {
         const roleVal = el('b_collegeRole').value;
         const isRetired = roleVal === 'Retired / Emeritus Faculty';
-        const isTrade = roleVal === 'Trade Delegate';
-        const hideInstitution = isRetired || isTrade;
+        const hideInstitution = isRetired;
 
         el('institutionFieldsWrap').classList.toggle('hidden', hideInstitution);
-        el('tradeCompanyWrap').classList.toggle('hidden', !isTrade);
 
         if (hideInstitution) {
           el('b_sector').removeAttribute('required');
@@ -1307,11 +1298,6 @@
           }
         }
 
-        if (isTrade) {
-          el('b_tradeCompany').setAttribute('required', 'required');
-        } else {
-          el('b_tradeCompany').removeAttribute('required');
-        }
       }
 
       function handleCollegeChange() {
@@ -1469,6 +1455,9 @@
           btn.classList.toggle('cursor-pointer', !isLockedOut);
         });
 
+        const landingTier = getDefaultActiveTier();
+        el('landingFeeTier').textContent = Date.now() >= REGISTRATION_CLOSE ? 'Registration closed' : TIER_LABELS[landingTier] + ' Registration';
+        el('landingFees').textContent = 'PG / Senior Resident: ' + formatINR(FEES.pg_resident[landingTier]) + ' · Delegates & Accompanying: ' + formatINR(FEES.delegate[landingTier]);
         const avail = getWindowAvailability();
         if (!avail[state.tier]) {
           state.tier = getDefaultActiveTier();
@@ -1503,8 +1492,9 @@
           btn.classList.toggle('cursor-pointer', isOpen);
           const sub = btn.querySelector('[data-tier-sub]');
           if (sub) {
-            if (tKey === 'regular') sub.textContent = isOpen ? 'Till 31 Dec 2026' : 'Closed (31 Dec 2026)';
-            if (tKey === 'spot') sub.textContent = isOpen ? '1–7 Jan 2027' : '1–7 Jan 2027';
+            if (tKey === 'early') sub.textContent = 'Until 7 Dec, 12:01 a.m. IST';
+            if (tKey === 'regular') sub.textContent = '7 Dec, 12:01 a.m. IST – 1 Jan, 12:01 a.m. IST';
+            if (tKey === 'spot') sub.textContent = '1 Jan, 12:01 a.m. IST – end of 10 Jan';
           }
         });
 
@@ -1546,15 +1536,16 @@
         if (el('accompAbove10Select')) el('accompAbove10Select').value = String(Number(state.accompAbove10) || 0);
 
         const adultAccomp = state.hasAccompanying ? (Number(state.accompAbove10) || 0) : 0;
-        const friStayAmount = EXTRA_FRIDAY_STAY_FEE * (1 + adultAccomp);
+        const fridayRate = getFridayRate();
+        const friStayAmount = fridayRate + getFridayRate('accompanying') * adultAccomp;
         if (el('friStayPriceBadge')) {
           el('friStayPriceBadge').textContent = '+ ' + formatINR(friStayAmount);
         }
         if (el('friStayPriceSub')) {
           if (adultAccomp > 0) {
-            el('friStayPriceSub').textContent = `Twin-sharing · 8 Jan extra payment (${formatINR(friStayAmount)}: ₹1,750 + ${adultAccomp} × ₹1,750 for 10 yrs & above)`;
+            el('friStayPriceSub').textContent = `Twin-sharing · 8 Jan extra payment (${formatINR(friStayAmount)}: ${formatINR(fridayRate)} + ${adultAccomp} × ₹1,750 for 10 yrs & above)`;
           } else {
-            el('friStayPriceSub').textContent = `Twin-sharing · 8 January on extra payment (₹1,750 per person)`;
+            el('friStayPriceSub').textContent = `Twin-sharing · 8 January on extra payment (${formatINR(fridayRate)} per person per night)`;
           }
         }
 
@@ -1584,8 +1575,8 @@
           el('sumExtraNote').textContent = 'Spot registration is subject to availability; delegate kit and hotel room are not guaranteed.';
         } else if (state.accommodation === 'fri_and_sat') {
           el('sumExtraNote').textContent = adultAccomp > 0
-            ? `Includes 9 Jan (Sat) stay plus ${formatINR(friStayAmount)} (₹1,750 + ${adultAccomp} × ₹1,750 above 10 yrs) for 8 Jan (Fri) extra night.`
-            : `Includes 9 Jan (Sat) stay plus ₹1,750 for 8 Jan (Fri) extra night. Confirm room availability via keralaaroi@gmail.com.`;
+            ? `Includes 9 Jan (Sat) stay plus ${formatINR(friStayAmount)} (${formatINR(fridayRate)} + ${adultAccomp} × ₹1,750 above 10 yrs) for 8 Jan (Fri) extra night.`
+            : `Includes 9 Jan (Sat) stay plus ${formatINR(fridayRate)} for 8 Jan (Fri) extra night. Confirm room availability via keralaaroi@gmail.com.`;
         } else {
           el('sumExtraNote').textContent = 'Includes scientific sessions, delegate kit, lunch & banquet, and 9 Jan (Sat) accommodation.';
         }
@@ -1643,11 +1634,8 @@
         const hasDistrictList = Boolean(STATE_DISTRICTS[el('b_state').value]);
         const selectedRole = el('b_collegeRole').value;
         const isRetired = selectedRole === 'Retired / Emeritus Faculty';
-        const isTrade = selectedRole === 'Trade Delegate';
-        const selectedCollege = (isRetired || isTrade) ? '' : el('b_college').value;
-        const resolvedCollege = isTrade
-          ? el('b_tradeCompany').value.trim()
-          : isRetired
+        const selectedCollege = (isRetired) ? '' : el('b_college').value;
+        const resolvedCollege = isRetired
             ? 'Not Applicable'
             : (selectedCollege.startsWith('Other ')
               ? el('b_customCollege').value.trim()
@@ -1662,21 +1650,17 @@
           district: hasDistrictList ? el('b_district').value : el('b_districtText').value.trim(),
           email: el('b_email').value.trim(),
           phone: el('b_phone').value.trim(),
-          sector: isTrade ? 'Industry / Trade' : (isRetired ? 'Not Applicable' : el('b_sector').value),
+          sector: isRetired ? 'Not Applicable' : el('b_sector').value,
           college: resolvedCollege,
           collegeRole: selectedRole,
           aroiMemberNo: el("b_aroiMemberNo").value.trim(),
         };
-        if (isTrade && resolvedCollege && !state.tailoredData.companyName) {
-          state.tailoredData.companyName = resolvedCollege;
-        }
 
         const role = state.basicData.collegeRole || '';
         let mappedCat = 'delegate';
         if (role === 'PG Resident' || role === 'Senior Resident') {
           mappedCat = 'pg_resident';
-        } else if (role === 'Trade Delegate') {
-          mappedCat = 'trade';
+
         } else {
           mappedCat = 'delegate';
         }
@@ -1734,21 +1718,7 @@
               </div>
             </div>
           `;
-        } else if (state.category === 'trade') {
-          html += `
-            <div class="border border-stone-200 rounded-xl p-4 sm:p-5 space-y-4">
-              <h4 class="font-semibold text-slate-900 text-sm border-b border-stone-100 pb-2">Trade &amp; Industry Exhibit Details</h4>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                ${buildInput('companyName', 'Company / Organization Name', 'text', true, 'e.g. Varian, Elekta, Siemens')}
-                ${buildInput('designation', 'Designation / Role', 'text', true, 'e.g. Clinical Applications Specialist')}
-                ${buildSelect('tradeTier', 'Participation Type', [
-                  { value: 'Individual Trade Delegate', label: 'Individual Trade Delegate' },
-                  { value: 'Stall / Booth Exhibitor', label: 'Stall / Booth Exhibitor' },
-                  { value: 'Platinum / Gold Sponsor', label: 'Platinum / Gold Sponsor' },
-                ])}
-              </div>
-            </div>
-          `;
+
         }
 
         if (state.hasAccompanying) {
@@ -1857,8 +1827,7 @@
         if (state.category === 'delegate') {
         } else if (state.category === 'accompanying') {
           rows.push(['Primary Delegate', `${t.primaryDelegateName || '—'} (${t.relationship || '—'})`]);
-        } else if (state.category === 'trade') {
-          rows.push(['Organization', `${t.companyName || '—'} — ${t.designation || '—'} (${t.tradeTier || '—'})`]);
+
         }
 
         if (state.abstract === 'yes') {
@@ -1883,10 +1852,10 @@
         if (state.hasAccompanying || state.accommodation === 'fri_and_sat') {
           rows.push(['Registration Fee', formatINR(baseFee)]);
           if (state.hasAccompanying) {
-            rows.push(['Accompanying Person Fee', formatINR(FEES.accompanying[state.tier])]);
+            rows.push(['Accompanying Person Fee (10 yrs & above)', formatINR(getAccompanyingRegFee())]);
           }
           if (state.accommodation === 'fri_and_sat') {
-            rows.push([state.hasAccompanying ? 'Extra Night (8 Jan Fri — 2 Persons)' : 'Extra Night (8 Jan Fri)', formatINR(getExtraStayFee())]);
+            rows.push(['Extra Night (8 Jan Fri — ' + (1 + (state.hasAccompanying ? Number(state.accompAbove10)||0 : 0)) + ' paying persons)', formatINR(getExtraStayFee())]);
           }
         }
         rows.push(['Total Fee Payable', formatINR(fee)]);
@@ -1936,9 +1905,7 @@
         if (role === 'PG Resident' || role === 'Senior Resident') {
           state.category = 'pg_resident';
           state.lockedCategory = 'pg_resident';
-        } else if (role === 'Trade Delegate') {
-          state.category = 'trade';
-          state.lockedCategory = 'trade';
+
         } else if (role === 'Accompanying Guest') {
           state.category = 'accompanying';
           state.lockedCategory = 'accompanying';
@@ -2094,6 +2061,7 @@
       });
 
       el('submitFinalBtn').addEventListener('click', () => {
+        if (!checkRegistrationWindow()) return;
         if (!el('policyConsent').checked) {
           showToast('Please accept the registration & cancellation policy to continue.');
           return;
@@ -2114,6 +2082,7 @@
       try { pendingSheetRecord = JSON.parse(sessionStorage.getItem(PENDING_SAVE_KEY)); } catch (_) {}
 
       el('confirmPayBtn').addEventListener('click', async () => {
+        if (!pendingSheetRecord && !checkRegistrationWindow()) return;
         const btn = el('confirmPayBtn');
         if (btn.disabled) return;
         if (!pendingSheetRecord) {
@@ -2278,7 +2247,37 @@
         if (e.target === el('infoModal')) el('infoModal').classList.add('hidden');
       });
 
+      // Refresh fee displays without resetting form inputs or changing saved delegate records.
+      let lastRegistrationWindow = '';
+      function refreshRegistrationWindow() {
+        const available = getWindowAvailability();
+        const current = Object.keys(available).find(key => available[key]) || 'closed';
+        if (current === lastRegistrationWindow) return false;
+        lastRegistrationWindow = current;
+        if (state.regId) return false;
+        const changed = current !== 'closed' && state.tier !== current;
+        syncSidebarAndStep2UI();
+        if (state.step === 4) el('reviewSummaryCard').innerHTML = renderReviewHTML();
+        if (state.step === 5) syncPaymentUI();
+        if (changed) showToast('The registration fee window has changed. Please review the updated total.');
+        return changed;
+      }
+
+      function checkRegistrationWindow() {
+        const changed = refreshRegistrationWindow();
+        if (Date.now() >= REGISTRATION_CLOSE) {
+          showToast('Registration closed after 10 January 2027.');
+          return false;
+        }
+        return !changed;
+      }
+
       showLanding();
+      refreshRegistrationWindow();
+      setInterval(refreshRegistrationWindow, 1000);
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) refreshRegistrationWindow();
+      });
     })();
   </script>
 </body>
